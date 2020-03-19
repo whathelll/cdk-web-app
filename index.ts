@@ -31,7 +31,6 @@ function noRedis() {
         count++;
         res.send(JSON.stringify({serverInstance, count}));
     })
-    
 }
 
 function useRedis() {
@@ -45,11 +44,14 @@ function useRedis() {
     app.get("/", (req, res, next) => {
         console.log("I got hit", req.headers);
         count++;
+        //update hit count
         client.set(serverInstance, count, (err: any) => {
             if (err) {
                 console.log(err);
             }
         });
+
+        //get all keys from db (as the variable 'values') and send it back in response
         let data: any = [];
         keysAync("*").then((keys: any) => {
             return Promise.all(keys.map((key: any) => {
