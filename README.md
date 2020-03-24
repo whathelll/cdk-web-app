@@ -11,7 +11,7 @@ npm start
 docker run --rm -p 6379:6379 redis
 
 # in a different terminal
-npm start 
+USE_REDIS=true npm start 
 ```
 
 # Dockerise it
@@ -34,8 +34,10 @@ docker kill $(docker ps -q)
 ```
 
 # Docker Compose
+can use a .env file to specify env
 ```
 docker-compose up
+curl localhost
 ```
 
 # Deploying to AWS
